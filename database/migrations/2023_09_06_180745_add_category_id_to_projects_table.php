@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            // //add category_id to 'projects' table
+            // $table->unsignedBigInteger('category_id')->nullable()->after('id');
+            // //relation between 'projects' & 'categories' tables
+            // $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
+            // Shorthand
+            $table->foreignId('category_id')->nullable()->after('id')->constrained()->nullOnDelete();
         });
     }
 
@@ -22,7 +27,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            $table->dropForeign('projects_category_id_foreign');
+            $table->dropColumn('category_id');
         });
     }
 };
