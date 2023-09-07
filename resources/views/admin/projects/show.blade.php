@@ -29,7 +29,10 @@
             <div class="row mt-5">
                 <div class="col-12 d-flex">
                     <div class="me-5 ps-2">
-                        <p><strong>Completion Year:</strong> {{ $project->completion_year }}</p>
+                        <p><strong>Category:</strong> <span class="label"
+                                style="background-color: {{ $project->category->color }}">
+                                {{ $project->category ? $project->category->label : '-' }}</span>
+                        </p>
                         <p><strong>Technologies:</strong> {{ $project->technologies }}</p>
                     </div>
                     <div class="me-5">
@@ -37,7 +40,7 @@
                         <p><strong>Project Duration:</strong> {{ $project->project_duration }}</p>
                     </div>
                     <div>
-                        <p><strong>Category:</strong> {{ $project->category ? $project->category->label : '-' }}</p>
+                        <p><strong>Completion Year:</strong> {{ $project->completion_year }}</p>
                         <p class="pb-0"><strong>URL:</strong> <a id="project-url"
                                 href="{{ $project->url }}">{{ $project->url }}</a></p>
                     </div>

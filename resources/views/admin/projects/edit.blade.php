@@ -80,7 +80,7 @@
                             <input type="text" class="form-control border border-secondary" id="client" name="client"
                                 value="{{ old('client', $project->client) }}">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-0">
                             <label for="project_duration" class="form-label">Durata del Progetto</label>
                             <input type="text" class="form-control border border-secondary" id="project_duration"
                                 name="project_duration" value="{{ old('project_duration', $project->project_duration) }}">

@@ -28,6 +28,11 @@
         color: $color-primary;
     }
 
+    .label {
+        padding: 3px 10px;
+        border-radius: 50px;
+    }
+
     #project-url {
         color: $color-bone;
         &:hover {
