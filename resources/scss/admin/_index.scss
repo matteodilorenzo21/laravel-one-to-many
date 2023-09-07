@@ -33,12 +33,12 @@
         border-color: $color-primary;
 
         th:first-child {
-            width: 7.5%;
+            width: 5%;
             background-color: transparent !important;
         }
-
+        
         th:not(:first-child) {
-            width: calc(100% / 8);
+            width: calc((100% / 8) - 5%);
             background-color: transparent !important;
         }
 
@@ -62,6 +62,11 @@
 
     tbody tr th:first-child {
         color: $color-tertiary;
+    }
+
+    .label {
+        padding: 3px 10px;
+        border-radius: 50px;
     }
 
     .project-action {

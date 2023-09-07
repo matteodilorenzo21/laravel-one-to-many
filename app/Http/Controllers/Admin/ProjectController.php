@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use App\Models\Category;
 
 class ProjectController extends Controller
 {
@@ -24,7 +25,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $project = new Project();
+        $categories = Category::select('id', 'label')->get();
+        return view('admin.projects.create', compact('project', 'categories'));
     }
 
     /**
@@ -35,6 +38,7 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'category_id' => 'nullable|exists:categories,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg,mp4|max:5120',
             'url' => 'nullable|url',
             'slug' => 'string|unique:projects,slug',
@@ -77,7 +81,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $categories = Category::select('id', 'label')->get();
+        return view('admin.projects.edit', compact('project', 'categories'));
     }
 
     /**

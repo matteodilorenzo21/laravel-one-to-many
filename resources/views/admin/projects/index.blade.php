@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <section id="projects-index" class="p-0 m-0">
+    <section id="projects-index" class="p-0 mx-5">
 
         <div class="table-actions d-flex justify-content-between align-items-center">
             <h1 class="ms-1">Projects</h1>
@@ -18,9 +18,10 @@
 
         <table id="projects-table" class="table">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th scope="col">ID</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Url</th>
                     <th scope="col">Year</th>
                     <th scope="col">Client</th>
@@ -31,15 +32,23 @@
             </thead>
             <tbody>
                 @forelse ($projects as $project)
-                    <tr class="align-middle">
+                    <tr class="align-middle text-center">
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
+                        <td>
+                            @if ($project->category)
+                                <span class="label"
+                                    style="background-color: {{ $project->category->color }}">{{ $project->category->label }}</span>
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td>{{ $project->url }}</td>
                         <td>{{ $project->completion_year }}</td>
                         <td>{{ $project->client }}</td>
                         <td>{{ $project->created_at }}</td>
                         <td>{{ $project->updated_at }}</td>
-                        <td class="vert">
+                        <td id="table-actions">
                             <a href="{{ route('admin.projects.show', $project) }}" id="show-btn"
                                 class="project-action d-inline"><i class="bi bi-eye"></i></a>
                             <a href="{{ route('admin.projects.edit', $project) }}" id="edit-btn"

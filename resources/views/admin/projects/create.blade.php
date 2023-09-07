@@ -23,7 +23,20 @@
                         <div class="mb-3">
                             <label for="description"
                                 class="form-label @error('description') is-invalid @enderror">Descrizione</label>
-                            <textarea rows="5" class="form-control border border-secondary" id="description" name="description">{{ old('description') }}</textarea>
+                            <textarea rows="1" class="form-control border border-secondary" id="description" name="description">{{ old('description') }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category"
+                                class="form-label @error('category_id') is-invalid @enderror">Categoria</label>
+                            <select class="form-select" id="category" name="category_id">
+                                <option value="">- Seleziona una categoria -</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->label }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Immagine</label>

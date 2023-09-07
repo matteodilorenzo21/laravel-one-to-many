@@ -33,7 +33,7 @@
 
         @include('components.admin.navbar')
 
-        <main class="container mt-3">
+        <main class="container-fluid mt-3">
             @yield('content')
         </main>
     </div>

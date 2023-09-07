@@ -24,8 +24,21 @@
                         <div class="mb-3">
                             <label for="description"
                                 class="form-label @error('description') is-invalid @enderror">Descrizione</label>
-                            <textarea rows="2" class="form-control border border-secondary" id="description" name="description">{{ old('description', $project->description) }}</textarea>
+                            <textarea rows="1" class="form-control border border-secondary" id="description" name="description">{{ old('description', $project->description) }}</textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="category"
+                                class="form-label @error('category_id') is-invalid @enderror">Categoria</label>
+                            <select class="form-select" id="category" name="category_id">
+                                <option value="">- Seleziona una categoria -</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $project->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="mb-3">
                             <label for="image" class="form-label">Immagine</label>
                             <input type="file"
@@ -73,14 +86,15 @@
                                 name="project_duration" value="{{ old('project_duration', $project->project_duration) }}">
                         </div>
                     </div>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('admin.projects.index') }}" id="edit-back-btn">Index<i
+                                class="bi bi-arrow-counterclockwise"></i></a>
+                        <button id="edit-reset-btn" type="reset" class="mx-2">Reset<i
+                                class="bi bi-arrow-repeat"></i></button>
+                        <button id="edit-update-btn" type="submit">Update<i class="bi bi-check-lg"></i></button>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('admin.projects.index') }}" id="edit-back-btn">Index<i
-                            class="bi bi-arrow-counterclockwise"></i></a>
-                    <button id="edit-reset-btn" type="reset" class="mx-2">Reset<i
-                            class="bi bi-arrow-repeat"></i></button>
-                    <button id="edit-update-btn" type="submit">Update<i class="bi bi-check-lg"></i></button>
-                </div>
+
             </form>
         </div>
     </section>

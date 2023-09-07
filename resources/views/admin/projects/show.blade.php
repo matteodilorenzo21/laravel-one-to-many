@@ -5,7 +5,7 @@
 @section('content')
 
     <section id="project-show">
-        <div class="container-fluid">
+        <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <h1 class="ps-3 fw-bold">{{ $project->title }}</h1>
                 <a id="index-btn" class="me-3" href="{{ route('admin.projects.index') }}">Index</i></a>
@@ -22,8 +22,7 @@
 
                 <div class="col-5 d-flex flex-column justify-content-between">
                     <p class="pb-0">{{ $project->description }}</p>
-                    <p class="pb-0"><strong>URL:</strong> <a id="project-url"
-                            href="{{ $project->url }}">{{ $project->url }}</a></p>
+
                 </div>
             </div>
 
@@ -33,9 +32,14 @@
                         <p><strong>Completion Year:</strong> {{ $project->completion_year }}</p>
                         <p><strong>Technologies:</strong> {{ $project->technologies }}</p>
                     </div>
-                    <div>
+                    <div class="me-5">
                         <p><strong>Client:</strong> {{ $project->client }}</p>
                         <p><strong>Project Duration:</strong> {{ $project->project_duration }}</p>
+                    </div>
+                    <div>
+                        <p><strong>Category:</strong> {{ $project->category ? $project->category->label : '-' }}</p>
+                        <p class="pb-0"><strong>URL:</strong> <a id="project-url"
+                                href="{{ $project->url }}">{{ $project->url }}</a></p>
                     </div>
                 </div>
             </div>
